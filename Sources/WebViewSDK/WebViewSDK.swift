@@ -13,7 +13,7 @@ public struct WebViewSDK {
     }
     
     public static func initWebViewController() -> WebViewController {
-        let storyboard = UIStoryboard(name: "SDKMain", bundle: nil)
+        let storyboard = UIStoryboard(name: "SDKMain", bundle: Bundle.module)
         return storyboard.instantiateViewController(withIdentifier: "WebViewControllerID") as! WebViewController
     }
 }
