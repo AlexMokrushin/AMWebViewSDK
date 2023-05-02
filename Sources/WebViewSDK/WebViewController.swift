@@ -25,8 +25,6 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
     let checkIsOnMethodName = "isOn"
     let testErrorMethodName = "testError"
     
-    var defaultUrl = ""
-    
     var curRequestId: Int? = nil
     
     public override func viewDidLoad() {
@@ -48,6 +46,14 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
             webView.load(URLRequest(url: url))
         } else {
             throw InvalidUrlError.runtimeError("Invalid URL")
+        }
+    }
+    
+    public func navigateToFile(url: URL) throws {
+        if UIApplication.shared.canOpenURL(url) {
+            webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+        } else {
+            throw InvalidUrlError.runtimeError("Invalid File URL")
         }
     }
     
