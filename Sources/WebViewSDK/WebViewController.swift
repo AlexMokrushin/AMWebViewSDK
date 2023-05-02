@@ -49,12 +49,8 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         }
     }
     
-    public func navigateToFile(url: URL) throws {
-        if UIApplication.shared.canOpenURL(url) {
-            webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
-        } else {
-            throw InvalidUrlError.runtimeError("Invalid File URL")
-        }
+    public func navigateToFile(url: URL) {
+        webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
