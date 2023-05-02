@@ -32,9 +32,9 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         
         webView.navigationDelegate = self
         webView.uiDelegate = self
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(reloadWebView(_:)), for: .valueChanged)
-        webView.scrollView.addSubview(refreshControl)
+//        let refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action: #selector(reloadWebView(_:)), for: .valueChanged)
+//        webView.scrollView.addSubview(refreshControl)
         webView.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
         let contentController = self.webView.configuration.userContentController
         webView.addObserver(self, forKeyPath: "URL", options: [.new,.old], context: nil)
@@ -59,10 +59,10 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @objc func reloadWebView(_ sender: UIRefreshControl) {
-        webView.reload()
-        sender.endRefreshing()
-    }
+//    @objc func reloadWebView(_ sender: UIRefreshControl) {
+//        webView.reload()
+//        sender.endRefreshing()
+//    }
     
     private func bestCamera(for position: AVCaptureDevice.Position) -> AVCaptureDevice? {
         var deviceTypes: [AVCaptureDevice.DeviceType] = [.builtInDualCamera, .builtInWideAngleCamera]
