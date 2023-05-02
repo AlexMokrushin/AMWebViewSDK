@@ -1,3 +1,7 @@
+#if canImport(UIKit)
+import UIKit
+#endif
+
 public enum InvalidUrlError: Error {
     case runtimeError(String)
 }
@@ -9,6 +13,7 @@ public struct WebViewSDK {
     }
     
     public static func initWebViewController() -> WebViewController {
-        return WebViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
     }
 }
