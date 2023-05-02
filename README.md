@@ -3,7 +3,6 @@
 Package contains SDK to use camera torch from page loaded to WKWebView.
 
 ## Installation
-Install Swift-package  as it's shown below:
 Add WebViewSDK using the Package manager in Xcode. Use the URL `https://github.com/Transported-Labs/ios-webview-sdk`
 ![](images/install.png)
 

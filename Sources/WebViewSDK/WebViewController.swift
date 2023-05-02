@@ -32,14 +32,17 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        // Adding control for reload web-page on pull down
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(reloadWebView(_:)), for: .valueChanged)
         webView.scrollView.addSubview(refreshControl)
+        // Adding cueSDK scripting object
         webView.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
         let contentController = self.webView.configuration.userContentController
         contentController.add(self, name: cueSDKName)
     }
     
+    ///  Navigates to the url in embedded WKWebView-object
     public func navigateTo(url: URL) throws {
         if UIApplication.shared.canOpenURL(url) {
             webView.load(URLRequest(url: url))
@@ -48,6 +51,7 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         }
     }
     
+    ///  Navigates to the local file url in embedded WKWebView-object
     public func navigateToFile(url: URL) {
         webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
     }
@@ -179,7 +183,7 @@ extension WebViewController: WKScriptMessageHandler{
                 let js2:String = "cueSDKCallback(JSON.stringify(\(paramData)))"
                 print("Sent to Javascript: \(js2)")
                 self.webView.evaluateJavaScript(js2, completionHandler: { (result, error) -> Void in
-                    print(error?.localizedDescription ?? "Sent successfully, no error")
+                    print(error?.localizedDescription ?? "Sent successfully, no errors")
                 })
             }
         } else {
